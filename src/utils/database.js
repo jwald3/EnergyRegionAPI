@@ -6,4 +6,13 @@ const sequelize = new Sequelize(process.env.DATABASE_URL || "", {
     logging: false,
 });
 
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log("Database connection has been established successfully.");
+    })
+    .catch((error) => {
+        console.error("Unable to connect to the database:", error);
+    });
+
 export default sequelize;
