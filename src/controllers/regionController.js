@@ -25,6 +25,7 @@ export const createRegion = async (req, res) => {
         const region = await Region.create(req.body);
         res.status(201).json(region);
     } catch (error) {
+        console.error("Error details:", error); // Log the error details
         res.status(500).json({ message: "Error creating region." });
     }
 };
