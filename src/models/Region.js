@@ -1,24 +1,29 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../utils/database.js";
 
-const Region = sequelize.define(
-    "Region",
+class Region extends Model {}
+
+Region.init(
     {
         RegionID: {
             type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
-            autoIncrement: true, // Make sure autoIncrement is enabled
         },
         RegionName: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
+            allowNull: false,
         },
         StateTerritory: {
-            type: DataTypes.STRING,
+            type: DataTypes.CHAR(2),
+            allowNull: false,
         },
     },
     {
+        sequelize,
+        modelName: "Region",
+        tableName: "Regions", // Set the table name explicitly
         timestamps: false,
-        tableName: "Regions",
     }
 );
 
