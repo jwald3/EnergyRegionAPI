@@ -10,7 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 // Mount the region routes on the app
 app.use("/regions", regionRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+const port = process.env.PORT || 3000;
+
+export { app, port };
