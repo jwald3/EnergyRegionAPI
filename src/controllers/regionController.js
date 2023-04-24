@@ -12,6 +12,7 @@ export const getAllRegions = async (req, res) => {
 
 export const getRegionById = async (req, res) => {
     try {
+        console.log("RegionID:", req.params.RegionID); // Add this line to log the RegionID
         const region = await Region.findByPk(req.params.RegionID);
         if (!region)
             return res.status(404).json({ message: "Region not found." });
