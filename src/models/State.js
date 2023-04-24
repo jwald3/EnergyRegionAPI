@@ -1,35 +1,30 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../utils/database.js";
-import State from "./State.js";
 
-class Region extends Model {}
+class State extends Model {}
 
-Region.init(
+State.init(
     {
-        region_id: {
+        state_id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        region_name: {
+        state_territory: {
             type: DataTypes.STRING(255),
             allowNull: false,
         },
-        state_id: {
-            type: DataTypes.INTEGER,
+        state_code: {
+            type: DataTypes.CHAR(2),
             allowNull: false,
-            references: {
-                model: State,
-                key: "StateID",
-            },
         },
     },
     {
         sequelize,
-        modelName: "Region",
-        tableName: "regions", // Set the table name explicitly
+        modelName: "State",
+        tableName: "states",
         timestamps: false,
     }
 );
 
-export default Region;
+export default State;

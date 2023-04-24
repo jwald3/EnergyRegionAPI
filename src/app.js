@@ -1,5 +1,6 @@
 import express from "express";
-import regionRoutes from "./routes/regionRoutes.js"; // Adjust the import path if needed
+import regionRoutes from "./routes/regionRoutes.js";
+import stateRoutes from "./routes/stateRoutes.js";
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Mount the region routes on the app
 app.use("/regions", regionRoutes);
+app.use("/states", stateRoutes);
 
 const port = process.env.PORT || 3000;
 
