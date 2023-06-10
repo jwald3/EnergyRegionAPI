@@ -2,7 +2,10 @@ import Region from "../models/Region.js";
 
 export const getAllRegions = async (req, res) => {
     try {
-        const regions = await Region.findAll();
+        const { state_id } = req.query;
+
+        const regions = await getBaseQuery(state_id);
+
         res.json(regions);
     } catch (error) {
         console.error("Error details:", error); // Log the error details
@@ -62,3 +65,19 @@ export const deleteRegion = async (req, res) => {
         res.status(500).json({ message: "Error deleting region." });
     }
 };
+
+const getBaseQuery = async (state_id = null) => {
+    const whereClause = constructWhereClause(state_id);
+
+    return await Region.findAll({ where: whereClause });
+}
+
+const constructWhereClause = (state_id) => {
+    let whereClause = {};
+
+    if (state_id) {
+        whereClause.state_id = state_id
+    }
+
+    return whereClause;
+}
